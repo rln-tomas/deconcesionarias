@@ -1,15 +1,25 @@
 import { createAction } from '@reduxjs/toolkit'
+import { addProperties, addProperty } from './property'
 
 const addCategories = createAction('category/addCategories', (categories) => {
-				return {
-								payload: {
-									categories
-								}
-				}
+  return {
+    payload: {
+      categories
+    }
+  }
+})
 
+const setIndex = createAction('category/setIndex', (index) => {
+  return {
+    payload: {
+      index: index
+    }
+  }
 })
 
 export default {
-	addCategories
+  addCategories,
+  addProperty,
+  addProperties,
+  setIndex
 }
-

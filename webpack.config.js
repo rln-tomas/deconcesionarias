@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
-const dotenv = require('dotenv').config().parsed
 module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
   output: {
@@ -12,16 +11,6 @@ module.exports = {
     }),
     new Dotenv()
   ],
-  devServer: {
-    proxy: {
-      '/api': {
-        target: `http://localhost:${dotenv.REACT_APP_API_PORT}/`,
-        pathRewrite: {
-          '^/api': ''
-        }
-      }
-    }
-  },
   module: {
     rules: [
       {

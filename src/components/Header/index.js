@@ -1,34 +1,10 @@
-import React, { useState } from 'react'
-import { AppBar, Tabs, Tab, Typography, Box, Icon } from '@material-ui/core'
-import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
+import { AppBar, Tabs, Tab, Icon } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
+import actions from '../../redux/actions'
 
 import { useStyles } from './styles.js'
-
-function TabPanel (props) {
-  const { children, value, index, ...other } = props
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  )
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired
-}
 
 function a11yProps (index) {
   return {
@@ -38,42 +14,25 @@ function a11yProps (index) {
 }
 
 const Header = () => {
-  const categories = [
-    {
-      name: 'test',
-      icon: 'https://i.ibb.co/zHW63yL/Foto-11.jpg'
-    },
-    {
-      name: 'test 1',
-      icon: 'https://i.ibb.co/zHW63yL/Foto-11.jpg'
-    },
-    {
-      name: 'test 2',
-      icon: 'https://i.ibb.co/zHW63yL/Foto-11.jpg'
-    },
-    {
-      name: 'test 2',
-      icon: 'https://i.ibb.co/zHW63yL/Foto-11.jpg'
-    },
-    {
-      name: 'test 2',
-      icon: 'https://i.ibb.co/zHW63yL/Foto-11.jpg'
-    },
-    {
-      name: 'test 2',
-      icon: 'https://i.ibb.co/zHW63yL/Foto-11.jpg'
-    },
-    {
-      name: 'test 2',
-      icon: 'https://i.ibb.co/zHW63yL/Foto-11.jpg'
-    }
-  ]
+  const dispatch = useDispatch()
 
+  const { addCategories, setIndex } = actions
+
+  const getCategories = async () => {
+    const response = await axios.get('/category')
+
+    dispatch(addCategories(response.data.data))
+  }
+  const value = useSelector(state => state.category.index)
+  const categories = useSelector(state => state.category.categories)
   const classes = useStyles()
-  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    getCategories()
+  }, [])
 
   const handleChange = (e, newValue) => {
-    setValue(newValue)
+    dispatch(setIndex(newValue))
   }
 
   return (
@@ -88,7 +47,7 @@ const Header = () => {
             {
                 categories.map((item, i) => {
                   return (
-                    <Tab key={i} label={item.name}
+                    <Tab key={item.id} label={item.name}
                         {...a11yProps(i)}
                         icon={
                             <Icon>
@@ -101,14 +60,6 @@ const Header = () => {
             }
           </Tabs>
         </AppBar>
-
-        {categories.map((item, i) => {
-          return (
-            <TabPanel key={i} value={value} index={i}>
-              {item.name}
-            </TabPanel>
-          )
-        })}
       </div>
   )
 }
