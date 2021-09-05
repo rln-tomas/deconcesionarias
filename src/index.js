@@ -7,13 +7,14 @@ import axios from 'axios'
 
 const accessToken = localStorage.getItem('token')
 axios.defaults.headers.common.authorization = accessToken
+axios.defaults.baseURL = process.env.REACT_APP_URL_API
 
 ReactDOM.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<App />
-		</Provider>
-</React.StrictMode>	,
-	document.getElementById('root')
-	
+<React.StrictMode>
+  <Provider store={store}>
+    <App />
+  </Provider>
+</React.StrictMode>,
+document.getElementById('root')
+
 )
