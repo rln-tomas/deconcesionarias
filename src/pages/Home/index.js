@@ -18,7 +18,6 @@ const Home = () => {
       <meta charset='utf-8' />
       <link rel='icon' href='/icons/home-icon.svg' type="image/x-icon" />
     </Helmet>
-    <SelectVehicle />
     <Header />
     <Panels />
   </Container>
