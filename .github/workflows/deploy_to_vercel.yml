@@ -16,3 +16,5 @@ jobs:
           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./
+        env: 
+          REACT_APP_URL_API: https://deconcesionarias-api-rln.herokuapp.com/api
