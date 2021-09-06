@@ -5,6 +5,7 @@ export default configureStore({
   reducer: {
     category: reducers.categoryReducer,
     property: reducers.propertyReducer,
-    vehicle: reducers.vehicleReducer
+    vehicle: reducers.vehicleReducer,
+    assessment: reducers.assessmentReducer
   }
 })

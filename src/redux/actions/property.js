@@ -15,3 +15,11 @@ export const addProperty = createAction('property/addProperty', (property) => {
     }
   }
 })
+
+export const addMyProperties = createAction('property/addMyProperties', (myProperties) => {
+  return {
+    payload: {
+      myProperties
+    }
+  }
+})

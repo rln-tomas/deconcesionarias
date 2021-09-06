@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Grid } from '@material-ui/core'
 import PropTypes from 'prop-types'
-import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../redux/actions'
 import Feature from '../Feature'
@@ -9,21 +8,23 @@ import Feature from '../Feature'
 import { useStyles } from './styles'
 
 const FeatureList = ({ categoryId }) => {
-  const { addProperties } = actions
+  const { addMyProperties } = actions
   const classes = useStyles()
 
   const vehicle = useSelector(state => state.vehicle.vehicle)
 
   const dispatch = useDispatch()
 
+  const allProperties = useSelector(state => state.property.properties)
+
   const [properties, setProperties] = useState([])
 
   // Llamada a la api.
 
-  const getProperties = async () => {
-    const properties = await axios.get(`/property/all/${categoryId}`)
-    dispatch(addProperties(properties.data.data))
-    setProperties(properties.data.data)
+  const getProperties = () => {
+    const myProperties = allProperties.filter(item => item.categoryId === parseInt(categoryId))
+    dispatch(addMyProperties(myProperties))
+    setProperties(myProperties)
   }
 
   useEffect(() => {
@@ -31,8 +32,8 @@ const FeatureList = ({ categoryId }) => {
   }, [])
 
   useEffect(() => {
-
-  }, [vehicle])
+    getProperties()
+  }, [allProperties])
 
   return (
   <Grid className={classes.container} xs={12} container item>
