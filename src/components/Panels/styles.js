@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core'
 
 export const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
+  container: {
+    border: '2px red solid',
+    borderRadius: 20,
+    marginTop: theme.spacing(2)
   }
 }))

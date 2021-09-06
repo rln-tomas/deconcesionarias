@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "webpack --mode production",
+    "build": "webpack --mode production",
     "dev": "webpack serve --history-api-fallback --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,11 +37,14 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@material-ui/system": "^4.12.1",
     "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "svg-url-loader": "^7.1.1"
