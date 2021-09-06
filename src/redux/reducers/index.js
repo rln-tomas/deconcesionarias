@@ -1,5 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit'
 import propertyReducer from './property'
+import vehicleReducer from './vehicle'
 import actions from '../actions'
 const { addCategories, setIndex } = actions
 const initialState = {
@@ -14,5 +15,6 @@ const categoryReducer = createReducer(initialState, (builder) => {
 
 export default {
   propertyReducer,
-  categoryReducer
+  categoryReducer,
+  vehicleReducer
 }
