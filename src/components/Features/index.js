@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Grid } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../redux/actions'
 import Feature from '../Feature'
 
@@ -11,6 +11,8 @@ import { useStyles } from './styles'
 const FeatureList = ({ categoryId }) => {
   const { addProperties } = actions
   const classes = useStyles()
+
+  const vehicle = useSelector(state => state.vehicle.vehicle)
 
   const dispatch = useDispatch()
 
@@ -27,6 +29,10 @@ const FeatureList = ({ categoryId }) => {
   useEffect(() => {
     getProperties()
   }, [])
+
+  useEffect(() => {
+
+  }, [vehicle])
 
   return (
   <Grid className={classes.container} xs={12} container item>

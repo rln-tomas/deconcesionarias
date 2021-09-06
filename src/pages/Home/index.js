@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import Header from '../../components/Header'
 import Panels from '../../components/Panels'
 
@@ -10,7 +11,12 @@ const Home = () => {
   const classes = useStyles()
 
   return (
-  <Container maxWidth='md' className={classes.container}>
+  <Container maxWidth='lg' className={classes.container}>
+    <Helmet>
+      <title>Home</title>
+      <meta charset='utf-8' />
+      <link rel='icon' href='/icons/home-icon.svg' type="image/x-icon" />
+    </Helmet>
     <Header />
     <Panels />
   </Container>

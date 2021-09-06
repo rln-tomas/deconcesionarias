@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
       <div className={classes.root}>
-        <AppBar position='static'>
+        <AppBar position='static' color='default' >
           <Tabs
               value={value}
               onChange={handleChange}
